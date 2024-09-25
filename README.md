@@ -15,6 +15,7 @@ docker desktop ->
 5. add the carousels.json and carousel-id.json to the mappings directory
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
