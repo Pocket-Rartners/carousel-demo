@@ -1,24 +1,20 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
-const UrlCarousel = () => {
-    const urls = [
-        "https://www.weather.gov/",
-        "https://www.nyse.com/index"
-    ];
+
+const UrlCarousel = (props: any) => {
 
     const [currentUrlIndex, setCurrentUrlIndex] = useState(0);
-    const carouselRef = useRef(null); // Reference to the carousel container
+    const carouselRef = useRef(null);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setCurrentUrlIndex((prevIndex) => (prevIndex + 1) % urls.length);
-        }, 20000); // Change URL every 3 seconds
+            setCurrentUrlIndex((prevIndex) => (prevIndex + 1) % props.urls.length);
+        }, 20000);
 
-        return () => clearInterval(intervalId); // Clean up on component unmount
-    }, [urls.length]);
+        return () => clearInterval(intervalId);
+    }, [props.urls.length]);
 
-    // Function to toggle fullscreen
     const goFullscreen = () => {
         if (carouselRef.current) {
             if (!document.fullscreenElement) {
@@ -34,7 +30,7 @@ const UrlCarousel = () => {
     return (
         <div ref={carouselRef} style={{ height: "100vh", width: "100vw", overflow: "hidden", position: "relative" }}>
             <iframe
-                src={urls[currentUrlIndex]}
+                src={props.urls[currentUrlIndex]}
                 style={{
                     height: "100%",
                     width: "100%",

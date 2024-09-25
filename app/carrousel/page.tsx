@@ -1,11 +1,9 @@
-import Carrousel from "@/app/ui/carrousel";
-import UrlCarousel from "@/app/ui/carrousel";
+import UrlCarousel from "@/app/ui/Carousel";
 
-const Home: React.FC = () => {
-    const urls: string[] = [
-        '/page1',
-        '/page2',
-        '/page3',
+const CarrouselDisplay: React.FC = () => {
+    const urls = [
+        "https://www.weather.gov/",
+        "https://www.nyse.com/index"
     ];
 
     return (
@@ -16,4 +14,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default CarrouselDisplay;

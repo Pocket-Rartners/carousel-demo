@@ -1,54 +1,104 @@
+"use client";
 import Image from "next/image";
-
+import React, { useState, useEffect } from "react";
+import { TrashIcon, PencilIcon, PlusIcon } from "@heroicons/react/outline";
+import Link from "next/link";
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [carousels, setCarousels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+  useEffect(() => {
+    const fetchCarousels = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/carrousels");
+        if (!response.ok) {
+          throw new Error("Failed to fetch carousels");
+        }
+        const data = await response.json();
+        setCarousels(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCarousels();
+  }, []);
+
+  const handleDelete = (id) => {
+    setCarousels(carousels.filter((carousel) => carousel.id !== id));
+  };
+
+
+  const handleEdit = (id) => {
+    console.log(`Redirect to edit carousel ${id}...`);
+  };
+
+  if (loading) {
+    return <div className="min-h-screen flex justify-center items-center">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="min-h-screen flex justify-center items-center text-red-500">Error: {error}</div>;
+  }
+
+  return (
+      <div>
+      <div className="min-h-screen bg-gray-100 p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-3xl font-semibold text-gray-700">Your Carousels</h1>
+            <Link href="/config/new">
+              <button
+                  className="flex items-center bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                <PlusIcon className="w-5 h-5 mr-2"/>
+                Create New
+              </button>
+            </Link>
+          </div>
+
+          {/* Carousel List */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {carousels.length > 0 ? (
+                carousels.map((carousel) => (
+                    <div
+                        key={carousel.id}
+                        className="bg-white p-4 shadow rounded-lg flex flex-col justify-between"
+                    >
+                      <div>
+                        <h2 className="text-xl font-semibold text-gray-800">{carousel.name}</h2>
+                        <p className="text-gray-500">Slides: {carousel.slides}</p>
+                        <p className="text-gray-400 text-sm">Created: {carousel.createdAt}</p>
+                      </div>
+
+                      <div className="mt-4 flex justify-between items-center">
+                        <Link href={`/config/${carousel.id}`} className="text-blue-500 hover:text-blue-700 focus:outline-none">
+                          <button
+                              onClick={() => handleEdit(carousel.id)}
+                              className="text-blue-500 hover:text-blue-700 focus:outline-none"
+                          >
+                            <PencilIcon className="w-5 h-5"/>
+                          </button>
+                        </Link>
+                        <button
+                            onClick={() => handleDelete(carousel.id)}
+                            className="text-red-500 hover:text-red-700 focus:outline-none"
+                        >
+                          <TrashIcon className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                ))
+            ) : (
+                <p className="text-gray-500 col-span-full text-center">No carousels found. Create a new one!</p>
+            )}
+          </div>
         </div>
-      </main>
+      </div>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
