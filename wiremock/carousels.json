@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/api/carousels",
+    "bodyPatterns": [
+      { "contains": "Carousel 4" }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "body": "{ \"message\": \"Carousel created\" }",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

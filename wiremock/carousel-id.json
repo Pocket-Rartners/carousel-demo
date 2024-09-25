@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/carousels/(\\d+)"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"id\":\"{{request.path.[1]}}\",\"name\":\"Carousel {{request.path.[1]}}\",\"items\":[\"Item {{request.path.[1]}}\"]}",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
