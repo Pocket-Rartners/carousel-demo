@@ -1,6 +1,6 @@
 // components/BackButton.js
 import Link from 'next/link';
-import { ChevronLeftIcon } from '@heroicons/react/solid'; // Ensure you have @heroicons/react installed
+import { ChevronLeftIcon } from '@heroicons/react/solid';
 
 const BackButton = () => {
     return (

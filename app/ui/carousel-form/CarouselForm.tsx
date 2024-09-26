@@ -33,13 +33,12 @@ const CarouselForm: React.FC<CarouselFormProps> = ({ initialData, onSubmit }) =>
         const updatedSlides = [...slides];
         const draggedSlide = updatedSlides[draggedSlideIndex];
 
-        // Remove dragged item and insert it at the new position
         updatedSlides.splice(draggedSlideIndex, 1);
         updatedSlides.splice(index, 0, draggedSlide);
 
         setSlides(updatedSlides);
-        setDraggedSlideIndex(index);  // Update draggedSlideIndex to the new position
-        setDraggedOverIndex(index);  // Update draggedOverIndex for smooth transition
+        setDraggedSlideIndex(index);
+        setDraggedOverIndex(index);
     };
 
     const handleDragEnd = () => {
@@ -105,7 +104,7 @@ const CarouselForm: React.FC<CarouselFormProps> = ({ initialData, onSubmit }) =>
                                     isDragging && draggedOverIndex === index ? 'transform scale-105' : ''
                                 }`}
                                 style={{
-                                    transition: 'transform 0.3s ease',  // Smooth transition when swapping
+                                    transition: 'transform 0.3s ease',
                                 }}
                             >
                                 <SlideItem
