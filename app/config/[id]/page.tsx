@@ -9,7 +9,7 @@ interface Slide {
     transitionType: string;
     transitionInterval: number;
 }
-interface Carrousel {
+interface Carousel {
     id: string;
     name: string;
     slides: Slide[];
@@ -18,7 +18,7 @@ interface Carrousel {
 const Config: React.FC<{ params: { id: string } }> = ({ params }) => {
     const router = useRouter();
     const id = params.id;
-    const [carrouselData, setCarrouselData] = useState<Carrousel | null>(null);
+    const [carrouselData, setCarrouselData] = useState<Carousel | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -26,7 +26,7 @@ const Config: React.FC<{ params: { id: string } }> = ({ params }) => {
         if (id && id !== 'new') {
             const fetchCarrousel = async () => {
                 try {
-                    const response = await fetch(`http://localhost:8080/api/carrousel/${id}`);
+                    const response = await fetch(`http://localhost:8080/api/carousel/${id}`);
                     if (!response.ok) {
                         throw new Error("Failed to fetch carousels");
                     }
@@ -44,7 +44,7 @@ const Config: React.FC<{ params: { id: string } }> = ({ params }) => {
         }
     }, [id]);
 
-    const handleSave = async (data: Carrousel) => {
+    const handleSave = async (data: Carousel) => {
         const method = id && id !== 'new' ? 'PUT' : 'POST';
         const url = id && id !== 'new' ? `/api/carousels/${id}` : `/api/carousels`;
 

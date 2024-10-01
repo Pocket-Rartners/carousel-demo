@@ -1,5 +1,16 @@
 {
   "id": "1",
   "name": "Carousel 1",
-  "items": ["Item 1", "Item 2"]
+  "slides": [
+    {
+      "url" : "weather.com",
+      "transitionType": "Slide",
+      "transitionInterval": "10.0"
+    },
+    {
+      "url" : "google.com",
+      "transitionType": "Fade",
+      "transitionInterval": "10.0"
+    }
+  ]
 }

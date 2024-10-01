@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const fetchCarousels = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/carrousels");
+        const response = await fetch("http://localhost:8080/api/carousels");
         if (!response.ok) {
           throw new Error("Failed to fetch carousels");
         }

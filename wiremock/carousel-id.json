@@ -1,13 +1,16 @@
 {
   "request": {
     "method": "GET",
-    "urlPattern": "/api/carousels/(\\d+)"
+    "urlPattern": "/api/carousel/1"
   },
   "response": {
     "status": 200,
-    "body": "{\"id\":\"{{request.path.[1]}}\",\"name\":\"Carousel {{request.path.[1]}}\",\"items\":[\"Item {{request.path.[1]}}\"]}",
+    "bodyFileName": "carousel-id-response.json",
     "headers": {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
     }
   }
 }

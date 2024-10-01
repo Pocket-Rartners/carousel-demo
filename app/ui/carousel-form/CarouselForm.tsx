@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import SlideItem from './SlideItem';
 import CarouselName from './CarouselName';
-import { Carrousel, Slide } from './types';
+import { Carousel, Slide } from './types';
 
 interface CarouselFormProps {
-    initialData?: Carrousel;
-    onSubmit: (data: Carrousel) => Promise<void>;
+    initialData?: Carousel;
+    onSubmit: (data: Carousel) => Promise<void>;
 }
 
 const CarouselForm: React.FC<CarouselFormProps> = ({ initialData, onSubmit }) => {
@@ -70,7 +70,7 @@ const CarouselForm: React.FC<CarouselFormProps> = ({ initialData, onSubmit }) =>
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const formData: Carrousel = {
+        const formData: Carousel = {
             id: initialData ? initialData.id : Date.now().toString(),
             name,
             slides,

@@ -5,7 +5,7 @@ export interface Slide {
     isCollapsed?: boolean;
 }
 
-export interface Carrousel {
+export interface Carousel {
     id: string;
     name: string;
     slides: Slide[];
