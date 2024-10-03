@@ -1,28 +1,9 @@
 ## Getting Started
 
-First, run the development server:
-
-you need to have node.js installed: https://nodejs.org/en/download/package-manager
-
-WIREMOCK Config
-docker desktop -> 
-1. pull the wiremock image
-![img.png](wiremock/reference_images/img.png)
-2. run this command in a terminal: docker run --name wiremock -p 8080:8080 wiremock/wiremock
-3. Traverse to the docker container files tab then home/wiremock
-![img_1.png](wiremock/reference_images/img_1.png)
-4. add the response.jsons to the __files directory
-5. add the carousels.json and carousel-id.json to the mappings directory
+Just have the Docker daemon running and run the following command
 
 ```bash
-npm install
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker compose up --force-recreate
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
