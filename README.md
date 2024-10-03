@@ -7,10 +7,10 @@ you need to have node.js installed: https://nodejs.org/en/download/package-manag
 WIREMOCK Config
 docker desktop -> 
 1. pull the wiremock image
-![img.png](wiremock/img.png)
+![img.png](wiremock/reference_images/img.png)
 2. run this command in a terminal: docker run --name wiremock -p 8080:8080 wiremock/wiremock
 3. Traverse to the docker container files tab then home/wiremock
-![img_1.png](wiremock/img_1.png)
+![img_1.png](wiremock/reference_images/img_1.png)
 4. add the response.jsons to the __files directory
 5. add the carousels.json and carousel-id.json to the mappings directory
 
