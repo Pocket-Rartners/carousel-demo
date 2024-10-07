@@ -3,12 +3,12 @@
   "name": "Carousel 1",
   "slides": [
     {
-      "url" : "weather.com",
+      "url" : "https://www.nyse.com/index",
       "transitionType": "Slide",
       "transitionInterval": "10.0"
     },
     {
-      "url" : "google.com",
+      "url" : "https://weather.com/",
       "transitionType": "Fade",
       "transitionInterval": "10.0"
     }
