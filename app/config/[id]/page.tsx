@@ -3,22 +3,14 @@ import CarrouselForm from "@/app/ui/carousel-form/CarouselForm";
 import BackButton from "@/app/ui/carousel-form/BackButton";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import {Carousel} from "@/app/ui/types";
+import carousel from "@/app/ui/carousel-component/Carousel";
 
-interface Slide {
-    url: string;
-    transitionType: string;
-    transitionInterval: number;
-}
-interface Carousel {
-    id: string;
-    name: string;
-    slides: Slide[];
-}
 
 const Config: React.FC<{ params: { id: string } }> = ({ params }) => {
     const router = useRouter();
     const id = params.id;
-    const [carrouselData, setCarrouselData] = useState<Carousel | null>(null);
+    const [carouselData, setCarouselData]: carousel = useState<Carousel | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +23,7 @@ const Config: React.FC<{ params: { id: string } }> = ({ params }) => {
                         throw new Error("Failed to fetch carousels");
                     }
                     const data = await response.json();
-                    setCarrouselData(data);
+                    setCarouselData(data);
                 } catch (err: any) {
                     setError(err.message);
                 } finally {
@@ -73,7 +65,7 @@ const Config: React.FC<{ params: { id: string } }> = ({ params }) => {
     return (
         <div className="">
             <BackButton />
-            <CarrouselForm initialData={carrouselData} onSubmit={handleSave} />
+            <CarrouselForm initialData={carouselData} onSubmit={handleSave} />
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SlideItem from './SlideItem';
 import CarouselName from './CarouselName';
-import { Carousel, Slide } from './types';
+import { Carousel, Slide } from '../types';
 
 interface CarouselFormProps {
     initialData?: Carousel;

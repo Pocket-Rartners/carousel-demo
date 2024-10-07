@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { ChevronDownIcon, ChevronUpIcon, TrashIcon } from '@heroicons/react/outline'; // Adjust import as needed
-import { Slide } from './types';
+import { ChevronDownIcon, ChevronUpIcon, TrashIcon } from '@heroicons/react/outline';
+import { Slide } from '../types';
 
 interface SlideItemProps {
     index: number;
