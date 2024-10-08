@@ -10,11 +10,7 @@ services:
       - ./wiremock/__files:/home/wiremock/__files
       - ./wiremock/mappings:/home/wiremock/mappings
     entrypoint: ["/docker-entrypoint.sh", "--global-response-templating", "--disable-gzip", "--verbose"]
-    healthcheck:
-      test: curl -f http://localhost:8080/__admin/health || exit 1
-      interval: 10s
-      timeout: 5s
-      retries: 3
+
   node:
     container_name: carousel_node
     restart: always
